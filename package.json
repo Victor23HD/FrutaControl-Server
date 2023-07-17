@@ -1,0 +1,30 @@
+{
+  "name": "frutacontrol-server",
+  "version": "1.0.0",
+  "description": "Server repository (back-end) for the FrutaControl system, in charge of processing requests, business logic and data storage, providing APIs for communication with the client.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victor23HD/FrutaControl-Server.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "JS",
+    "MongoDB",
+    "API-REST"
+  ],
+  "author": "Victor Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victor23HD/FrutaControl-Server/issues"
+  },
+  "homepage": "https://github.com/Victor23HD/FrutaControl-Server#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
