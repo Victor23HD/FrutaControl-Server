@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-const usersControllers =
-{
-    listUsers: async(req, res) => {
-        res.status(200).send("Victor | 12345");
-=======
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -19,16 +13,10 @@ const usersControllers = {
     // Check e-mail
     if (await User.findOne({ email: email })) {
       return res.status(422).json({ msg: "Please use another e-mail!" });
->>>>>>> Stashed changes
     }
-}
-
-<<<<<<< Updated upstream
-export default usersControllers;
-=======
     // Create password
 
-    const abcde = bcrypt.genSalt(12, (error, salt) => {
+    bcrypt.genSalt(12, (error, salt) => {
       if (error) {
         console.error("Error generating salt:", error);
         return;
@@ -66,7 +54,6 @@ export default usersControllers;
     const { email, password } = req.body;
 
     const _user = await User.findOne({ email: email });
-   
 
     const checkPass = bcrypt.compare(password, _user.password);
 
@@ -80,13 +67,11 @@ export default usersControllers;
         secret
       );
 
-      res.status(201).json({msg: `TOKEN: ${token}`});
-
-    }else{
-        res.status(404).json({msg: "User not found!"});
+      res.status(201).json({ msg: `Authentication successful!`, Token: `${token}` });
+    } else {
+      res.status(404).json({ msg: "User not found!" });
     }
   },
 };
 
 export default usersControllers;
->>>>>>> Stashed changes
