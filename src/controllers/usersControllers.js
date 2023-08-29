@@ -3,9 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const usersControllers = {
-  listUsers: async (req, res) => {
-    res.status(200).send(user);
-  },
 
   registerUsers: async (req, res) => {
     const { username, password, email, confirmPassword } = req.body;
@@ -72,6 +69,20 @@ const usersControllers = {
       res.status(404).json({ msg: "User not found!" });
     }
   },
+
+  collectData: async (req, res) => {
+    const id = req.params.id;
+
+    const user = await User.findById(id, "-password -__v -_id");
+
+    if(!user){
+      return res.status(404).json({msg: "User not found!"});
+    }
+
+    return res.status(200).json({user});
+  },
+
 };
+
 
 export default usersControllers;
