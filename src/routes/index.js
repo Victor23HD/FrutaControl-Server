@@ -4,7 +4,7 @@ import userRouter from "./userRouter.js";
 const routes = (app) =>
 {
     app.route("/").get((req, res) => {
-        res.status(200).send({msg: "FrutaControl!"});
+        res.status(200).send("FrutaControl!");
     });
 
     app.use(
