@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const usersControllers = {
-
   registerUsers: async (req, res) => {
     const { username, password, email, confirmPassword } = req.body;
 
@@ -51,22 +50,27 @@ const usersControllers = {
     const { email, password } = req.body;
 
     const _user = await User.findOne({ email: email });
+    try {
+      const checkPass = bcrypt.compare(password, _user.password);
 
-    const checkPass = bcrypt.compare(password, _user.password);
+      if (checkPass) {
+        const secret = process.env.SECRET;
 
-    if (checkPass) {
-      const secret = process.env.SECRET;
+        const token = jwt.sign(
+          {
+            id: _user._id,
+          },
+          secret
+        );
 
-      const token = jwt.sign(
-        {
-          id: _user._id,
-        },
-        secret
-      );
-
-      res.status(201).json({ msg: `Authentication successful!`, Token: `${token}` });
-    } else {
-      res.status(404).json({ msg: "User not found!" });
+        res
+          .status(201)
+          .json({ msg: `Authentication successful!`, Token: `${token}` });
+      } else {
+        res.status(404).json({ msg: "User not found!" });
+      }
+    } catch (err) {
+      res.status(401).json({ msg: "erro interno" });
     }
   },
 
@@ -75,14 +79,12 @@ const usersControllers = {
 
     const user = await User.findById(id, "-password -__v -_id");
 
-    if(!user){
-      return res.status(404).json({msg: "User not found!"});
+    if (!user) {
+      return res.status(404).json({ msg: "User not found!" });
     }
 
-    return res.status(200).json({user});
+    return res.status(200).json({ user });
   },
-
 };
-
 
 export default usersControllers;
