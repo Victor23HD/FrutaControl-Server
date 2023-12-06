@@ -1,5 +1,6 @@
 import express from "express";
 import userRouter from "./userRouter.js";
+import registerRouter from "./registerRouter.js"
 
 const routes = (app) =>
 {
@@ -10,6 +11,7 @@ const routes = (app) =>
     app.use(
         express.json(),
         userRouter,
+        registerRouter,
         notFound
     );
 };
