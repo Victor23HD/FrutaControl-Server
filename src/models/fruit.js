@@ -10,11 +10,11 @@ const Fruit = mongoose.model("Fruit", {
         required: [true, "The Type field is required!"],
     },
     quantity: {
-        type: Int32Array,
+        type: Number,
         required: [true, "The Quantity field is required!"],
     },
     price: {
-        type: Float32Array,
+        type: Number,
         required: [true, "The Price field is required!"],
     },
     supplier: {
@@ -26,7 +26,7 @@ const Fruit = mongoose.model("Fruit", {
         required: [true, "The Due Date field is required!"],
     },
     weightPerUnit: {
-        type: Int32Array,
+        type: Number,
         required: [true, "The Weight Per Unit field is required!"],
     },
     category: {

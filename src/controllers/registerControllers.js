@@ -1,4 +1,4 @@
-import Fruit from "../models/fruit";
+import Fruit from "../models/fruit.js";
 
 const registerControllers = {
   registerFruit: async (req, res) => {
