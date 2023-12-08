@@ -5,6 +5,8 @@ import registerControllers from "../controllers/registerControllers.js";
 const registerRouter = express.Router();
 
 registerRouter
-.post("/register?frutas", checkToken, registerControllers.registerFruit);
+.get("/listFruit/:id", checkToken, registerControllers.listFruit)
+.post("/registerFruit", checkToken, registerControllers.registerFruit);
+
 
 export default registerRouter;
